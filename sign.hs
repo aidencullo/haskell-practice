@@ -1,4 +1,4 @@
-sign :: (Ord a, Num a) => a -> String
+sign :: Int -> String
 sign x
   | x < 0 = "Negative"
   | x > 0 = "Positive"
