@@ -1,3 +1,5 @@
+module Replicate where
+
 replicate' :: (Num a, Ord a) => a -> b -> [b]
 replicate' n x
   | n < 0 = error "cannot replicate something negative times"

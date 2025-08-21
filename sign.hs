@@ -1,3 +1,5 @@
+module Sign where
+
 sign :: Int -> String
 sign x
   | x < 0 = "Negative"
