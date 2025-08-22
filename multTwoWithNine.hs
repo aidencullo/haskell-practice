@@ -1,5 +1,4 @@
-import qualified MultThree
+module MultTwoWithNine where
 
-
-multTwoWithNine :: Int -> Int -> Int
-multTwoWithNine = MultThree.multThree 9
+multTwoWithNine :: (Num a) => a -> a -> a
+multTwoWithNine x y = x * y * 9
