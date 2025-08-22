@@ -9,6 +9,7 @@ import qualified Maximum
 import qualified Replicate
 import qualified Sign
 import qualified Take
+import qualified MultThree
 
 main :: IO ()
 main = do
@@ -22,3 +23,7 @@ main = do
     putStrLn "- sign"
     putStrLn "- take'"
     putStrLn "- myCompare"
+
+    print (Compare.myCompare 1 200)
+
+    putStrLn "The end"
