@@ -1,5 +1,6 @@
 import Debug.Trace
 
+factorial :: Int -> Int
 factorial 0 = 1
 factorial n = trace ("factorial " ++ show n) (n * factorial (n-1))
 
