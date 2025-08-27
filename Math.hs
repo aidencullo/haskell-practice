@@ -1,5 +1,5 @@
 -- Math.hs
-module Math where
+module Math (module Math.Adder, module Math.Multiplier) where
 
-add x y = 0
-multiply x y = 0
+import Math.Adder
+import Math.Multiplier
