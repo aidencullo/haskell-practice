@@ -1,0 +1,7 @@
+-- Now what we want to know is this: for all starting numbers between 1 and 100, how many chains have a length greater than 15? First off, we'll write a function that produces a chain:
+
+chain :: Int -> [Int]
+chain x
+      | x == 1 = [x]
+      | odd x = x : chain (3 * x + 1)
+      | even x = x : chain (2 * x)
