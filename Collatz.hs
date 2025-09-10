@@ -4,4 +4,4 @@ chain :: Int -> [Int]
 chain x
       | x == 1 = [x]
       | odd x = x : chain (3 * x + 1)
-      | even x = x : chain (2 * x)
+      | even x = x : chain (x `div` 2)
