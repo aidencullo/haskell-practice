@@ -8,4 +8,5 @@ chain x
 
 
 numChains :: Int
-numChains = length [x | x <- [1..100], length (chain x) > 15]
+numChains = length ( filter isLong (map chain [1..100]))
+    where isLong x = length(x) > 15
