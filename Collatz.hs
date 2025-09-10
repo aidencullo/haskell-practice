@@ -5,3 +5,7 @@ chain x
       | x == 1 = [x]
       | odd x = x : chain (3 * x + 1)
       | even x = x : chain (x `div` 2)
+
+
+numChains :: Int
+numChains = length [x | x <- [1..100], length (chain x) > 15]
