@@ -4,3 +4,6 @@ map' f (x:xs) = f x : map' f xs
 
 mapFoldr :: (a->b)->[a]->[b]
 mapFoldr f xs = foldr (\x acc -> f x : acc) [] xs
+
+mapFoldl :: (a->b)->[a]->[b]
+mapFoldl f xs = reverse (foldl (\acc x -> f x : acc) [] xs)
