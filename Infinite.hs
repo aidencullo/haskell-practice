@@ -14,6 +14,19 @@ falseAndFalse = foldr (&&) False (repeat False)
 trueAndFalse :: Bool
 trueAndFalse = foldr (&&) False (repeat True)
 
--- infinite as well I think
+-- infinite as well 
 trueAndTrue :: Bool
 trueAndTrue = foldr (&&) True (repeat True)
+
+
+-- true
+trueOrTrue = foldr (||) True (repeat True)
+
+-- inf
+falseOrTrue = foldr (||) True (repeat False)
+
+-- inf
+falseOrFalse = foldr (||) False (repeat False)
+
+-- true
+trueOrFalse = foldr (||) False (repeat True)
