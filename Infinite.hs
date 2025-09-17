@@ -30,3 +30,14 @@ falseOrFalse = foldr (||) False (repeat False)
 
 -- true
 trueOrFalse = foldr (||) False (repeat True)
+
+
+
+-- inf
+trueOrFalseFoldl = foldl (||) False (repeat True)
+
+-- inf
+falseOrFalseFoldl = foldl (||) False (repeat False)
+
+-- inf
+trueAndTrueFoldl = foldl (&&) True (repeat True)
