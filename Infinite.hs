@@ -1,11 +1,19 @@
 -- foldr on an infinite list
 
-onethroughfour = take 4 (foldr (:) [] [1..])
+oneThroughFour = take 4 (foldr (:) [] [1..])
 
 -- will return False (False && ..)
-andFalse :: Bool
-andFalse = foldr (&&) True (repeat False)
+falseAndTrue :: Bool
+falseAndTrue = foldr (&&) True (repeat False)
 
--- inifinite
-andTrue :: Bool
-andTrue = foldr (&&) False (repeat True)
+-- still false
+falseAndFalse :: Bool
+falseAndFalse = foldr (&&) False (repeat False)
+
+-- infinite
+trueAndFalse :: Bool
+trueAndFalse = foldr (&&) False (repeat True)
+
+-- infinite as well I think
+trueAndTrue :: Bool
+trueAndTrue = foldr (&&) True (repeat True)
