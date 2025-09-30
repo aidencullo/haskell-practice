@@ -1,5 +1,5 @@
 head' :: [a] -> a
-head' = foldr1 (\x acc -> x)
+head' = foldr1 (\x _ -> x)
 
 one :: Int
 one = 1
