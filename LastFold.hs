@@ -2,7 +2,7 @@ last' :: [a] -> a
 last' = foldl1 (\_ x -> x)
 
 ten :: Int
-ten = 10
+  ten = 10
 
 oneToTen :: [Int]
 oneToTen = [1..10]
