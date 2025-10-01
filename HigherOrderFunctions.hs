@@ -13,3 +13,5 @@ flip' f =
 (.:) f g = \x -> f $ g x
 
 
+composition = replicate 100 (product (map (*3) (zipWith max [1,2,3,4,5] [4,5,6,7,8])))
+compositionDot = replicate 100 . product .  map (*3) . zipWith max [1,2,3,4,5] $ [4,5,6,7,8]
