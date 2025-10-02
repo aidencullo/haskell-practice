@@ -26,3 +26,13 @@ fn' = ceiling . negate . tan . cos . max 50
 
 test :: Bool
 test = all (\x -> fn' x == fn x) [1..100000]
+
+-- write this in point free style
+oddSquareSum :: Integer  
+oddSquareSum = sum (takeWhile (<10000) (filter odd (map (^2) [1..])))  
+
+oddSquareSum' :: Integer  
+oddSquareSum' = sum . takeWhile (<10000) . filter odd . map (^2) $ [1..]
+
+testOdd :: Bool
+testOdd = oddSquareSum' == oddSquareSum
