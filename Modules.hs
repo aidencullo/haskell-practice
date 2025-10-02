@@ -19,3 +19,15 @@ numUniques = length . nub
 
 myMap = Data.Map.fromList [(1,'a'), (2,'b')]
 filtered = Data.Map.filter (\v -> v == 'a') myMap
+
+
+-- Define a type
+data Shape = Circle Float | Rectangle Float Float
+
+-- Circle and Rectangle are *constructors*
+-- They create values of type Shape
+c1 :: Shape
+c1 = Circle 3.0   -- uses the Circle constructor
+
+r1 :: Shape
+r1 = Rectangle 4.0 5.0  -- uses the Rectangle constructor
