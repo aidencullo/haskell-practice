@@ -15,3 +15,14 @@ flip' f =
 
 composition = replicate 100 (product (map (*3) (zipWith max [1,2,3,4,5] [4,5,6,7,8])))
 compositionDot = replicate 100 . product .  map (*3) . zipWith max [1,2,3,4,5] $ [4,5,6,7,8]
+
+
+-- write this in point-free style
+fn :: (Num a) => a -> a
+fn x = ceiling (negate (tan (cos (max 50 x))))  
+
+fn' :: (Num a) => a -> a
+fn' x = ceiling . negate . tan . cos . max 50 $ x
+
+test :: Bool
+test = all (\x -> fn' x == fn x) [1..100000]
