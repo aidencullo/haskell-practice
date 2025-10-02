@@ -36,3 +36,12 @@ oddSquareSum' = sum . takeWhile (<10000) . filter odd . map (^2) $ [1..]
 
 testOdd :: Bool
 testOdd = oddSquareSum' == oddSquareSum
+
+oddSquareSumReadable :: Integer  
+oddSquareSumReadable = let squared = map (^2) [1..]
+                           odds = filter odd squared
+                           under10k = takeWhile (<10000) odds
+                         in sum under10k
+
+testOddReadable :: Bool
+testOddReadable = oddSquareSumReadable == oddSquareSum
