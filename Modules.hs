@@ -1,6 +1,7 @@
 import Data.List
 -- this will cause a clash error on filter
 -- import Data.Map
+import qualified Data.Map  
 
 -- create a sample datatype
 data MyBool = MyTrue | MyFalse
@@ -16,4 +17,5 @@ numUniques :: (Eq a) => [a] -> Int
 numUniques = length . nub  
 
 
-filtered = filter (\v -> v == 'a') ['a'..'z']
+myMap = Data.Map.fromList [(1,'a'), (2,'b')]
+filtered = Data.Map.filter (\v -> v == 'a') myMap
