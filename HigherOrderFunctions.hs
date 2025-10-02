@@ -18,11 +18,11 @@ compositionDot = replicate 100 . product .  map (*3) . zipWith max [1,2,3,4,5] $
 
 
 -- write this in point-free style
-fn :: (Num a) => a -> a
+fn :: (RealFrac a, Floating a, Ord a, Integral b) => a -> b
 fn x = ceiling (negate (tan (cos (max 50 x))))  
 
-fn' :: (Num a) => a -> a
-fn' x = ceiling . negate . tan . cos . max 50 $ x
+fn' :: (RealFrac a, Floating a, Ord a, Integral b) => a -> b
+fn' = ceiling . negate . tan . cos . max 50
 
 test :: Bool
 test = all (\x -> fn' x == fn x) [1..100000]
