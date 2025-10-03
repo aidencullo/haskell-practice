@@ -42,6 +42,12 @@ testAllSame1 = allSame (replicate 10 10) == True
 testAllSame2 :: Bool
 testAllSame2 = allSame (replicate 10 100) == True
 
+testAllSame3 :: Bool
+testAllSame3 = allSame [1..10] == False
+
+testAllSame4 :: Bool
+testAllSame4 = allSame (take 100 $ repeat 10) == True
+
 testAllSames :: [Bool]
 testAllSames = [testAllSame1, testAllSame2]
 
