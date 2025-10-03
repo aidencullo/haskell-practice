@@ -32,10 +32,15 @@ c1 = Circle 3.0   -- uses the Circle constructor
 r1 :: Shape
 r1 = Rectangle 4.0 5.0  -- uses the Rectangle constructor
 
+-- -- implement allSame
+-- allSame :: (Eq a) => [a] -> Bool
+-- allSame xs = (length . nub) xs == 1
+
 -- implement allSame
 allSame :: (Eq a) => [a] -> Bool
-allSame xs = (length . nub) xs == 1
+allSame xs = all (== head xs) xs
 
+-- test allSame
 testAllSame1 :: Bool
 testAllSame1 = allSame (replicate 10 10) == True
 
