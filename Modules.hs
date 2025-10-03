@@ -42,7 +42,9 @@ testAllSame1 = allSame (replicate 10 10) == True
 testAllSame2 :: Bool
 testAllSame2 = allSame (replicate 10 100) == True
 
+testAllSames :: [Bool]
+testAllSames = [testAllSame1, testAllSame2]
+
 testAllSame :: Bool
-testAllSame = testAllSame1
-  && testAllSame2
+testAllSame = and testAllSames
 
