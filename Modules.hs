@@ -1,4 +1,4 @@
-import Data.List (nub)
+import Data.List
 import qualified Data.Map as Map
 
 -- Sample datatype
@@ -46,3 +46,11 @@ testAllSames = [testAllSame1, testAllSame2]
 
 testAllSameOverall :: Bool
 testAllSameOverall = and testAllSames
+
+-- Let's use a fold to implement searching a list for a sub list.
+search :: (Eq a) => [a] -> [a] -> Bool
+search needle haystack =
+  let nLen = length needle
+  in foldl (\acc x -> if take nLen x == needle then True else acc) False (tails haystack)
+
+
