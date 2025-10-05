@@ -54,3 +54,5 @@ search needle haystack =
   in foldl (\acc x -> if take nLen x == needle then True else acc) False (tails haystack)
 
 
+-- find takes a list and a predicate and returns the first element that satisfies the predicate.
+first = let stock = [(994.4,2008,9,1),(995.2,2008,9,2),(999.2,2008,9,3),(1001.4,2008,9,4),(998.3,2008,9,5)] in find (\(val,y,m,d) -> val > 1000) stock
