@@ -1,4 +1,6 @@
+import Data.List (groupBy)
 import Data.List
+import Data.Function
 import qualified Data.Map as Map
 
 -- Sample datatype
@@ -74,3 +76,15 @@ avg xs = sum xs / (genericLength xs)
 --       In an equation for ‘avg'’: avg' xs = sum xs / (length xs)
 --    |
 -- 64 | avg' xs = sum xs / (length xs)
+
+
+-- import Data.List (groupBy)
+
+groupByExample = groupBy (==) [1,1,2,2,2,3,1,1] 
+-- Result: [[1,1],[2,2,2],[3],[1,1]]
+
+
+groupByNormal = groupBy (\x y -> (x > 0) == (y > 0))
+groupByUsingOn = groupBy ((==) `on` (> 0))
+values = [-4.3, -2.4, -1.2, 0.4, 2.3, 5.9, 10.5, 29.1, 5.3, -2.4, -14.5, 2.9, 2.3]
+testOn = groupByNormal values == groupByUsingOn values
