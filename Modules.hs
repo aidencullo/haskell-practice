@@ -56,3 +56,21 @@ search needle haystack =
 
 -- find takes a list and a predicate and returns the first element that satisfies the predicate.
 first = let stock = [(994.4,2008,9,1),(995.2,2008,9,2),(999.2,2008,9,3),(1001.4,2008,9,4),(998.3,2008,9,5)] in find (\(val,y,m,d) -> val > 1000) stock
+
+
+
+-- avg :: Fractional a => [a] -> a
+avg xs = sum xs / (genericLength xs)
+
+-- causes below error
+-- avg' xs = sum xs / (length xs)
+
+
+--     • Could not deduce ‘Fractional Int’ arising from a use of ‘/’
+--       from the context: Foldable t
+--         bound by the inferred type of avg' :: Foldable t => t Int -> Int
+--         at modules.hs:64:1-30
+--     • In the expression: sum xs / (length xs)
+--       In an equation for ‘avg'’: avg' xs = sum xs / (length xs)
+--    |
+-- 64 | avg' xs = sum xs / (length xs)
