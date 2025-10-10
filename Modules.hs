@@ -1,5 +1,5 @@
-import Data.List (groupBy)
 import Data.List
+import Data.Char
 import Data.Function
 import qualified Data.Map as Map
 
@@ -88,3 +88,11 @@ groupByNormal = groupBy (\x y -> (x > 0) == (y > 0))
 groupByUsingOn = groupBy ((==) `on` (> 0))
 values = [-4.3, -2.4, -1.2, 0.4, 2.3, 5.9, 10.5, 29.1, 5.3, -2.4, -14.5, 2.9, 2.3]
 testOn = groupByNormal values == groupByUsingOn values
+
+
+-- ghci> groupBy ((==) `on` isSpace) "hey folks its me"  
+-- ["hey"," ","folks"," ","its"," ","me"]  
+-- ghci>  
+-- Hmmm, well, it kind of does what words does but we're left with elements of only spaces. Hmm, whatever shall we do? I know, let's filter that sucker.
+groups = groupBy ((==) `on` isSpace) "hey folks its me"
+filteredGroups = filter (not . isSpace . head) groups
