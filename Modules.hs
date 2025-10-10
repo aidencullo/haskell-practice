@@ -96,3 +96,17 @@ testOn = groupByNormal values == groupByUsingOn values
 -- Hmmm, well, it kind of does what words does but we're left with elements of only spaces. Hmm, whatever shall we do? I know, let's filter that sucker.
 groups = groupBy ((==) `on` isSpace) "hey folks its me"
 filteredGroups = filter (not . isSpace . head) groups
+
+
+
+-- -- GOAL -- caesar cipher
+-- ghci> encode 3 "Heeeeey"  
+-- "Khhhhh|"  
+-- ghci> encode 4 "Heeeeey"  
+-- "Liiiii}"  
+-- ghci> encode 1 "abcd"  
+-- "bcde"  
+-- ghci> encode 5 "Marry Christmas! Ho ho ho!"  
+-- "Rfww~%Hmwnxyrfx&%Mt%mt%mt&"  
+
+
