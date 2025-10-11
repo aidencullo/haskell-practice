@@ -119,3 +119,5 @@ decode shift msg = let ords = map ord msg
                        shifted = map (+ (-shift)) ords
                    in map chr shifted
 testDecode = decode 5 "Rfww~%Hmwnxyrfx&%Mt%mt%mt&" == "Marry Christmas! Ho ho ho!"
+
+testEncodeDecode = decode 5 (encode 5 "Marry Christmas! Ho ho ho!") == "Marry Christmas! Ho ho ho!"
