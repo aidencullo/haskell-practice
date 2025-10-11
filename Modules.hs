@@ -107,6 +107,9 @@ filteredGroups = filter (not . isSpace . head) groups
 -- ghci> encode 1 "abcd"  
 -- "bcde"  
 -- ghci> encode 5 "Marry Christmas! Ho ho ho!"  
--- "Rfww~%Hmwnxyrfx&%Mt%mt%mt&"  
+
+encode :: Int -> String -> String
+encode x = map (chr . (+x) . ord)
+testEncode = encode 5 "Marry Christmas! Ho ho ho!" == "Rfww~%Hmwnxyrfx&%Mt%mt%mt&"
 
 
