@@ -109,7 +109,9 @@ filteredGroups = filter (not . isSpace . head) groups
 -- ghci> encode 5 "Marry Christmas! Ho ho ho!"  
 
 encode :: Int -> String -> String
-encode x = map (chr . (+x) . ord)
+encode shift msg = let ords = map ord msg
+                       shifted = map (+ shift) ords
+                   in map chr shifted
 testEncode = encode 5 "Marry Christmas! Ho ho ho!" == "Rfww~%Hmwnxyrfx&%Mt%mt%mt&"
 
 
