@@ -114,10 +114,13 @@ encode shift msg = let ords = map ord msg
                    in map chr shifted
 testEncode = encode 5 "Marry Christmas! Ho ho ho!" == "Rfww~%Hmwnxyrfx&%Mt%mt%mt&"
 
-decode :: Int -> String -> String
-decode shift msg = let ords = map ord msg
-                       shifted = map (+ (-shift)) ords
-                   in map chr shifted
-testDecode = decode 5 "Rfww~%Hmwnxyrfx&%Mt%mt%mt&" == "Marry Christmas! Ho ho ho!"
+-- decode :: Int -> String -> String
+-- decode shift msg = let ords = map ord msg
+--                        shifted = map (+ (-shift)) ords
+--                    in map chr shifted
 
+decode :: Int -> String -> String
+decode shift = encode (negate shift)
+
+testDecode = decode 5 "Rfww~%Hmwnxyrfx&%Mt%mt%mt&" == "Marry Christmas! Ho ho ho!"
 testEncodeDecode = decode 5 (encode 5 "Marry Christmas! Ho ho ho!") == "Marry Christmas! Ho ho ho!"
