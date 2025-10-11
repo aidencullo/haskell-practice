@@ -49,58 +49,75 @@ testAllSames = [testAllSame1, testAllSame2]
 testAllSameOverall :: Bool
 testAllSameOverall = and testAllSames
 
--- Search for a sublist
-search :: Eq a => [a] -> [a] -> Bool
+-- Let's use a fold to implement searching a list for a sub list.
+search :: (Eq a) => [a] -> [a] -> Bool
 search needle haystack =
-    let nLen = length needle
-    in foldl (\acc x -> if take nLen x == needle then True else acc) False (tails haystack)
+  let nLen = length needle
+  in foldl (\acc x -> if take nLen x == needle then True else acc) False (tails haystack)
 
--- Find first element satisfying predicate
-first :: Maybe (Double, Int, Int, Int)
-first = let stock = [(994.4,2008,9,1),(995.2,2008,9,2),(999.2,2008,9,3),(1001.4,2008,9,4),(998.3,2008,9,5)]
-        in find (\(val,_,_,_) -> val > 1000) stock
 
--- Average
-avg :: Fractional a => [a] -> a
-avg xs = sum xs / genericLength xs
--- avg' xs = sum xs / length xs  -- causes error: Fractional Int
+-- find takes a list and a predicate and returns the first element that satisfies the predicate.
+first = let stock = [(994.4,2008,9,1),(995.2,2008,9,2),(999.2,2008,9,3),(1001.4,2008,9,4),(998.3,2008,9,5)] in find (\(val,y,m,d) -> val > 1000) stock
 
--- groupBy examples
-groupByExample :: [[Int]]
+
+
+-- avg :: Fractional a => [a] -> a
+avg xs = sum xs / (genericLength xs)
+
+-- causes below error
+-- avg' xs = sum xs / (length xs)
+
+
+--     • Could not deduce ‘Fractional Int’ arising from a use of ‘/’
+--       from the context: Foldable t
+--         bound by the inferred type of avg' :: Foldable t => t Int -> Int
+--         at modules.hs:64:1-30
+--     • In the expression: sum xs / (length xs)
+--       In an equation for ‘avg'’: avg' xs = sum xs / (length xs)
+--    |
+-- 64 | avg' xs = sum xs / (length xs)
+
+
+-- import Data.List (groupBy)
+
 groupByExample = groupBy (==) [1,1,2,2,2,3,1,1] 
 -- Result: [[1,1],[2,2,2],[3],[1,1]]
 
-groupByNormal :: [[Double]]
-groupByNormal = groupBy (\x y -> (x > 0) == (y > 0)) values
 
-groupByUsingOn :: [[Double]]
-groupByUsingOn = groupBy ((==) `on` (> 0)) values
-
-values :: [Double]
+groupByNormal = groupBy (\x y -> (x > 0) == (y > 0))
+groupByUsingOn = groupBy ((==) `on` (> 0))
 values = [-4.3, -2.4, -1.2, 0.4, 2.3, 5.9, 10.5, 29.1, 5.3, -2.4, -14.5, 2.9, 2.3]
-
-testOn :: Bool
 testOn = groupByNormal values == groupByUsingOn values
 
--- Filter out space-only groups
-groups :: [String]
-groups = groupBy ((==) `on` isSpace) "hey folks its me"
 
-filteredGroups :: [String]
+-- ghci> groupBy ((==) `on` isSpace) "hey folks its me"  
+-- ["hey"," ","folks"," ","its"," ","me"]  
+-- ghci>  
+-- Hmmm, well, it kind of does what words does but we're left with elements of only spaces. Hmm, whatever shall we do? I know, let's filter that sucker.
+groups = groupBy ((==) `on` isSpace) "hey folks its me"
 filteredGroups = filter (not . isSpace . head) groups
 
--- Caesar cipher
-encode :: Int -> String -> String
-encode shift msg = map (chr . (+ shift) . ord) msg
 
-testEncode :: Bool
+
+-- -- GOAL -- caesar cipher
+-- ghci> encode 3 "Heeeeey"  
+-- "Khhhhh|"  
+-- ghci> encode 4 "Heeeeey"  
+-- "Liiiii}"  
+-- ghci> encode 1 "abcd"  
+-- "bcde"  
+-- ghci> encode 5 "Marry Christmas! Ho ho ho!"  
+
+encode :: Int -> String -> String
+encode shift msg = let ords = map ord msg
+                       shifted = map (+ shift) ords
+                   in map chr shifted
 testEncode = encode 5 "Marry Christmas! Ho ho ho!" == "Rfww~%Hmwnxyrfx&%Mt%mt%mt&"
 
 decode :: Int -> String -> String
-decode shift msg = map (chr . (+ (-shift)) . ord) msg
-
-testDecode :: Bool
+decode shift msg = let ords = map ord msg
+                       shifted = map (+ (-shift)) ords
+                   in map chr shifted
 testDecode = decode 5 "Rfww~%Hmwnxyrfx&%Mt%mt%mt&" == "Marry Christmas! Ho ho ho!"
 
-testEncodeDecode :: Bool
 testEncodeDecode = decode 5 (encode 5 "Marry Christmas! Ho ho ho!") == "Marry Christmas! Ho ho ho!"
